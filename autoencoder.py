@@ -8,7 +8,7 @@ def autoencoder_model():
     return autoencoder
 
 
-def predict(input_imgs):  # (32, 32, 3)
+def predict(input_imgs):  # (?, 32, 32, 3)
     autoencoder = autoencoder_model()
     decoded_imgs = autoencoder.predict(input_imgs)
     losses = [K.eval(mean_squared_error(i_img, o_img)) for (i_img, o_img) in zip(input_imgs, decoded_imgs)]
