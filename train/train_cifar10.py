@@ -1,5 +1,6 @@
 from keras.layers import Input, Convolution2D, MaxPooling2D, UpSampling2D
 from keras.models import Model
+from keras.datasets import cifar10
 # from keras.callbacks import TensorBoard
 # from keras.metrics import mean_squared_error
 # from keras import backend as K
@@ -9,10 +10,9 @@ from keras.models import Model
 # https://blog.keras.io/building-autoencoders-in-keras.html
 # https://elix-tech.github.io/ja/2016/07/17/autoencoder.html
 
-import datasets
-
-datasets = datasets.DataSets()
-x_train, x_test = datasets.load_data()
+(x_train, _), (x_test, _) = cifar10.load_data()
+x_train = x_train.astype('float32') / 255.  # (50000, 32, 32, 3)
+x_test = x_test.astype('float32') / 255.
 
 # input_img = Input(shape=(3, 32, 32))  # theano
 input_img = Input(shape=(32, 32, 3))  # tensorflow
